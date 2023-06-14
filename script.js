@@ -34,13 +34,15 @@ if (YearOfBirth == 1965) {
     var FIRST_DIGIT_GENERATOR = 0;
 }
 if (YearOfBirth < 1965) {
-    var FIRST_DIGIT_GENERATOR = [1,3,5,7,9];
+    do {
+        FIRST_DIGIT_GENERATOR = Math.floor(Math.random()*9 + 1)
+    } while ( FIRST_DIGIT_GENERATOR % 2 !== 1 );
 }
 if (YearOfBirth > 1965) {
     var FIRST_DIGIT_GENERATOR;
     do {
         FIRST_DIGIT_GENERATOR = Math.floor(Math.random()*9 + 1)
-    } while( FIRST_DIGIT_GENERATOR % 2 == 1 );
+    } while ( FIRST_DIGIT_GENERATOR % 2 == 1 );
 }
 console.log(`pyrwata cifra e ${FIRST_DIGIT_GENERATOR}`);
 
