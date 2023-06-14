@@ -28,23 +28,66 @@
 //     ако резултата е двуцифрено число, вземете само първата цифра от него.
 
 
-const YearOfBirth = prompt(`Здравейте! Моля, споделете Вашата рождена дата!`);
+// MY OWN ATTEMPT
+// const YearOfBirth = prompt(`Здравейте! Моля, споделете Вашата рождена дата!`);
 
-if (YearOfBirth == 1965) {
-    var FIRST_DIGIT_GENERATOR = 0;
+// if (YearOfBirth == 1965) {
+//     var FIRST_DIGIT_GENERATOR = 0;
+// }
+// else { if (YearOfBirth < 1965) {
+//     var FIRST_DIGIT_GENERATOR;
+//     do {
+//         FIRST_DIGIT_GENERATOR = Math.floor(Math.random()*9 + 1)
+//     } while ( FIRST_DIGIT_GENERATOR % 2 !== 1 );
+// }
+//  else { if (YearOfBirth > 1965) {
+//     var FIRST_DIGIT_GENERATOR;
+//     do {
+//         FIRST_DIGIT_GENERATOR = Math.floor(Math.random()*9 + 1)
+//     } while ( FIRST_DIGIT_GENERATOR % 2 == 1 );
+// } } }
+// console.log(`pyrwata cifra e ${FIRST_DIGIT_GENERATOR}`);
+
+// предложението на Михаил Петров
+
+var CustomerCardFirstDigit  = 0;
+var CustomerCardSecondDigit = 0;
+var CustomerCardThirdDigit  = 0;
+var CustomerCardFourthDigit = 0;
+var CustomerCardFifthDigit  = 0;
+var CustomerCardSixthDigit  = 0;
+
+const TRESHOLD_CUSTOMER_YEAR = 1965;
+const currentYear = (new Date()).getFullYear(); // what is this? 
+const CustomerYearOfBirth = 1955; // prompt(`Здравейте! Моля, споделете Вашата рождена дата!`);
+const customerAge = currentYear - CustomerYearOfBirth;
+
+
+function getFirstDigit() {
+    
+    const customerRandomCoefficient = getRandom(1, 7); // old const customerRandomCoefficient = Math.ceil((Math.random() * (7-1) + 1));
+    var CustomerCardFirstDigit = parseInt(customerAge / customerRandomCoefficient);
+
+    // return CustomerCardFirstDigit;
 }
-if (YearOfBirth < 1965) {
+
+
+function isProcessable(CustomerCardFirstDigit) {
+    return isOdd(CustomerCardFirstDigit) || (CustomerCardFirstDigit >= 10);
+}
+
+if (CustomerYearOfBirth > TRESHOLD_CUSTOMER_YEAR) {
     do {
-        FIRST_DIGIT_GENERATOR = Math.floor(Math.random()*9 + 1)
-    } while ( FIRST_DIGIT_GENERATOR % 2 !== 1 );
+        CustomerCardFirstDigit = getFirstDigit();
+    } while(isOdd(CustomerCardFirstDigit) || (CustomerCardFirstDigit >= 10))
 }
-if (YearOfBirth > 1965) {
-    var FIRST_DIGIT_GENERATOR;
-    do {
-        FIRST_DIGIT_GENERATOR = Math.floor(Math.random()*9 + 1)
-    } while ( FIRST_DIGIT_GENERATOR % 2 == 1 );
+if (CustomerYearOfBirth < TRESHOLD_CUSTOMER_YEAR) {
+
+do {
+    CustomerCardFirstDigit = getFirstDigit();
+} while(isEven(CustomerCardFirstDigit) || (CustomerCardFirstDigit >= 10))
 }
-console.log(`pyrwata cifra e ${FIRST_DIGIT_GENERATOR}`);
+console.log(`първа цифра ${CustomerCardFirstDigit}`);
 
 // SECOND_DIGIT_GENERATOR
 // Втора цифра
